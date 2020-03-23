@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    
+    <title>webhook | zunpeng&#39;s wiki</title>
+    
+    
+        <meta name="keywords" content="webhook">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="git clone https://github.com/dounine/github-webhook.git 修改hook.js 123456789101112131415161718192021222324252627282930313233343536373839404142434445var http = require(&apos;http&apos;)var createHandler = require">
+<meta property="og:type" content="article">
+<meta property="og:title" content="webhook">
+<meta property="og:url" content="http://192.168.0.107:4000/wiki/个人Wiki搭建/webhook/index.html">
+<meta property="og:site_name" content="zunpeng&#39;s wiki">
+<meta property="og:description" content="git clone https://github.com/dounine/github-webhook.git 修改hook.js 123456789101112131415161718192021222324252627282930313233343536373839404142434445var http = require(&apos;http&apos;)var createHandler = require">
+<meta property="og:locale" content="cn">
+<meta property="og:updated_time" content="2020-03-23T05:24:53.060Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="webhook">
+<meta name="twitter:description" content="git clone https://github.com/dounine/github-webhook.git 修改hook.js 123456789101112131415161718192021222324252627282930313233343536373839404142434445var http = require(&apos;http&apos;)var createHandler = require">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="zunpeng&#39;s wiki" type="application/atom+xml">
+    
+
+    
+        <link rel="icon" href="../../../favicon.ico">
+    
+
+    <link rel="stylesheet" href="../../../libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../../libs/open-sans/styles.css">
+    <link rel="stylesheet" href="../../../libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="../../../css/style.css">
+    <script src="../../../libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="../../../libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+    
+    
+        <link rel="stylesheet" href="../../../libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="../../../libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+    
+
+
+    
+        <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+</head>
+</html>
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="../../../index.html" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">zunpeng&#39;s wiki</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="../../../index.html">首页</a>
+                
+                    <a class="main-nav-link" href="../../../archives">归档</a>
+                
+                    <a class="main-nav-link" href="../../../categories">分类</a>
+                
+                    <a class="main-nav-link" href="../../../tags">标签</a>
+                
+                    <a class="main-nav-link" href="../../../about">关于</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '../../../content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="../../../js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="../../../index.html">首页</a></td>
+                
+                    <td><a class="main-nav-link" href="../../../archives">归档</a></td>
+                
+                    <td><a class="main-nav-link" href="../../../categories">分类</a></td>
+                
+                    <td><a class="main-nav-link" href="../../../tags">标签</a></td>
+                
+                    <td><a class="main-nav-link" href="../../../about">关于</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search">
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap" id="categories">
+        <h3 class="widget-title">
+            <span>categories</span>
+            &nbsp;
+            <a id="allExpand" href="#">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        
+        
+         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Git
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="../../Git/Git基本操作/">Git基本操作</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Go入门指南
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            第一章 Go语言的起源，发展与普及
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="../../Go入门指南/第一章 Go语言的起源，发展与普及/1.1 起源与发展/">1.1 起源与发展</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="../../Go入门指南/前言/">前言</a></li>  <li class="file"><a href="../../Go入门指南/目录/">目录</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Hexo
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="../../Hexo/Hexo操作命令/">Hexo操作命令</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            个人Wiki搭建
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file active"><a href>webhook</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="../../index/">About Me</a></li>  </ul> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="post-个人Wiki搭建/webhook" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="../../../categories/个人Wiki搭建/">个人Wiki搭建</a>
+    </div>
+
+                        
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href>
+            <time datetime="2020-03-23T01:42:00.000Z" itemprop="datePublished">2020-03-23</time>
+        </a>
+    </div>
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                            <div class="article-meta-button">
+                                <a href="http://192.168.0.107:8809/zunpeng/wiki-site/raw/master/source/_posts/个人Wiki搭建/webhook.md"> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a href="http://192.168.0.107:8809/zunpeng/wiki-site/edit/master/source/_posts/个人Wiki搭建/webhook.md"> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a href="http://192.168.0.107:8809/zunpeng/wiki-site/commits/master/source/_posts/个人Wiki搭建/webhook.md"> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 class="article-title" itemprop="name">
+            webhook
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+        
+        
+            <p><code>git clone https://github.com/dounine/github-webhook.git</code></p>
+<p>修改hook.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> createHandler = <span class="built_in">require</span>(<span class="string">'github-webhook-handler'</span>)</span><br><span class="line"><span class="keyword">var</span> secretPassword = <span class="string">'abc123'</span> <span class="comment">//github secret安全密码</span></span><br><span class="line"><span class="comment">// webhook为gitbucket中url后的路径</span></span><br><span class="line"><span class="keyword">var</span> handler = createHandler(&#123;<span class="attr">path</span>: <span class="string">'/webhook'</span>, <span class="attr">secret</span>: secretPassword&#125;)</span><br><span class="line"><span class="keyword">var</span> cmd = <span class="built_in">require</span>(<span class="string">'node-cmd'</span>)</span><br><span class="line"><span class="comment">// webhook服务端口</span></span><br><span class="line"><span class="keyword">var</span> port = <span class="number">8083</span></span><br><span class="line"><span class="keyword">var</span> bash = <span class="string">'/opt/app/wiki/gitbucket-pull.sh'</span> <span class="comment">//执行的脚本</span></span><br><span class="line"> </span><br><span class="line">http.createServer(<span class="function"><span class="keyword">function</span> (<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">    handler(req, res, <span class="function"><span class="keyword">function</span> (<span class="params">err</span>) </span>&#123;</span><br><span class="line">        res.writeHead(<span class="number">200</span>, &#123;<span class="string">'content-type'</span>: <span class="string">'application/json'</span>&#125;)</span><br><span class="line">        <span class="keyword">var</span> msg = <span class="string">'&#123;"code":404,"msg":"没有这个地扯"&#125;'</span></span><br><span class="line">        res.end(msg)</span><br><span class="line">        <span class="built_in">console</span>.log(msg)</span><br><span class="line">    &#125;)  </span><br><span class="line">&#125;).listen(port, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"Github Hook Server running at http://0.0.0.0:"</span> + port + <span class="string">"/webhook"</span>);</span><br><span class="line">&#125;);</span><br><span class="line"> </span><br><span class="line">handler.on(<span class="string">'error'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">err</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.error(<span class="string">'错误:'</span>, err.message)</span><br><span class="line">&#125;)</span><br><span class="line"> </span><br><span class="line">handler.on(<span class="string">'push'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Received a push event for %s to %s'</span>,</span><br><span class="line">        event.payload.repository.name,</span><br><span class="line">        event.payload.ref)</span><br><span class="line">    cmd.get(bash, <span class="function"><span class="keyword">function</span> (<span class="params">err, data, stderr</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(data)</span><br><span class="line">        <span class="keyword">if</span> (stderr) &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">"脚本错误:"</span> + stderr)</span><br><span class="line">        &#125;   </span><br><span class="line">    &#125;)  </span><br><span class="line">&#125;)</span><br><span class="line"> </span><br><span class="line">handler.on(<span class="string">'issues'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Received an issue event for %s action=%s: #%d %s'</span>,</span><br><span class="line">        event.payload.repository.name,</span><br><span class="line">        event.payload.action,</span><br><span class="line">        event.payload.issue.number,</span><br><span class="line">        event.payload.issue.title)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>注意：需要根据git操作，预先对git工作目录进行手动pull一次，设置相关远程路径之类</p>
+<p><strong>gitbucket-pull.sh</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="built_in">echo</span> `date` &gt;&gt; test.log</span></span><br><span class="line">cd /opt/app/wiki</span><br><span class="line">git pull wiki master</span><br></pre></td></tr></table></figure>
+<h3 id="webhook启动"><a href="#webhook启动" class="headerlink" title="webhook启动"></a>webhook启动</h3><p><code>cd $WEBHOOK_HOME &amp;&amp; ./start.sh</code></p>
+<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><ul>
+<li><a href="https://www.jianshu.com/p/4e0dfc5cfb17" rel="external nofollow noopener noreferrer" target="_blank">git-Webhook让部署自动化</a></li>
+</ul>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+    
+        <a href="../../Git/Git基本操作/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">Git基本操作</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>     
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            zunpeng &copy; 2020 
+            <a rel="external nofollow noopener noreferrer" href="http://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png"></a>
+            <br> Powered by <a href="http://hexo.io/" target="_blank" rel="external nofollow noopener noreferrer">Hexo</a>. Theme - <a href="https://github.com/zthxxx/hexo-theme-Wikitten" rel="external nofollow noopener noreferrer" target="_blank">wikitten</a>
+            
+                <br><span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i><span id="busuanzi_value_site_pv"></span></span> | 
+                <span id="busuanzi_container_site_pv"><i class="fa fa-user"><span id="busuanzi_value_site_uv"></span></i></span>
+            
+        </div>
+    </div>
+</footer>
+        
+
+    
+        <script src="../../../libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="../../../libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="../../../libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="../../../libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="../../../libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="../../../libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="../../../libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="../../../libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="../../../libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="../../../libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+        <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true,
+            TeX: {
+                equationNumbers: {
+                  autoNumber: 'AMS'
+                }
+            }
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="../../../js/main.js"></script>
+
+    </div>
+</body>
