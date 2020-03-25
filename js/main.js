@@ -9,6 +9,7 @@
 
             // 对于已经包含在链接内的图片不适用lightGallery
             if ($(this).parent().prop("tagName") !== 'A') {
+                //debugger;
                 $(this).wrap('<a href="' + this.src + '" title="' + this.alt + '" class="gallery-item"></a>');
             }
         });
